@@ -44,7 +44,8 @@ public class Manager {
     }
 
     public String calcDriveTime() {
-
+        int time = travelDistanceProcessor.getTime();
+        return String.valueOf(time);
     }
 
     public String calcFlightCost() {
