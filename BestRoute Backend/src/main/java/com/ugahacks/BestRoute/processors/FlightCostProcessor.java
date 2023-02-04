@@ -46,7 +46,7 @@ public class FlightCostProcessor {
         }
     }
 
-    public int getCost(String origin, String destination) {
+    public int getCost() {
         return Integer.parseInt(jsonString.substring(jsonString.indexOf("price") + 8, jsonString.indexOf("price") + 12));
     }
 
