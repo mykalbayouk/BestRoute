@@ -16,6 +16,14 @@ public class ExportableUserData {
         this.flightTime = flightTime;
     } // ExportableUserData
 
+    public ExportableUserData() {
+        this.driveCost = "Failure";
+        this.driveTime = "Failure";
+        this.flightCost = "Failure";
+        this.flightTime = "Failure";
+
+    }
+
     public String getDriveCost() {
         return driveCost;
     } // getDriveCost
