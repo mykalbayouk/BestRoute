@@ -38,7 +38,6 @@ public class Manager {
         double miles = travelDistanceProcessor.getDistance() / 1609.344;
         int mpg = milePerGallonProcessor.getMPG();
         double ppg = gasPriceProcessor.getPPG();
-        System.out.println("Miles: " + miles + " MPG: " + mpg + " PPG: " + ppg);
         double cost = (miles / mpg) * ppg;
         return String.valueOf(cost);
     }

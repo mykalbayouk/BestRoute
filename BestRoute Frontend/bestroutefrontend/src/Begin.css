@@ -1,0 +1,48 @@
+/*Each label on any form */
+.inputLabel {
+    font-size: 20px;
+  }
+  
+  /* Each input box on any form */
+  .inputBox {
+    font-size: 18px;
+    margin-left: 10px;
+    margin-bottom: 25px;
+    margin-right: 50%;
+  }
+  
+  /* The submit button on any form */
+  .submitButton {
+    font-size: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-weight: bold;
+    grid-column: 1 / 3;
+    color: #3a3b3c;
+    padding: 8px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: #98c1d9;
+    border: 2px solid #d3d3d3;
+    transition: .3s;
+  }
+
+  .submitButton:hover {
+    color: white;
+    background-color: #293241;
+    transition: .3s;
+  }
+
+  #form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .resultstexter {
+    font-size: 20px;
+  }
