@@ -21,12 +21,18 @@ public class FlightCostProcessor {
     private String jsonString;
     private double lon;
     private double lat;
-    
+    private int count;
+    private String origin;
+    private String destination;
+    private int numPeople;
 
-
-    public void process(String origin, String destination, int numPeople) {
-        getJSON(getIATA(getLonLat(origin)), getIATA(getLonLat(destination)), numPeople);
+    public FlightCostProcessor(String origin, String destination, int numPeople) {
+        this.origin = origin;
+        this.destination = destination;
+    }
         
+    public void process(String origin, String destination, int numPeople) {
+        getJSON(getIATA(getLonLat(origin), 0), getIATA(getLonLat(destination), 0), numPeople);    
     }
 
     private void getJSON(String origin, String destination, int numPeople) {
@@ -53,8 +59,15 @@ public class FlightCostProcessor {
     }
 
     public double getCost() {
-        String temp = jsonString.substring(jsonString.indexOf("price"));
-        String output = jsonString.substring(jsonString.indexOf("price"), temp.indexOf("}"));
+        String temp = "";
+        String output = "";
+        try {
+            temp = jsonString.substring(jsonString.indexOf("price"));
+            output = jsonString.substring(jsonString.indexOf("price"), temp.indexOf("}"));
+        } catch (StringIndexOutOfBoundsException e) {
+            count++;
+            getJSON(getIATA(getLonLat(origin), 0), getIATA(getLonLat(destination), 0), numPeople);
+        }
         return Double.parseDouble(output.substring(17));
     }
 
@@ -65,7 +78,7 @@ public class FlightCostProcessor {
         return dtf.format(now);
     }
 
-    private String getIATA(String input) {
+    private String getIATA(String input, int count) {
         String lon = input.substring(0, input.indexOf(","));
         String lat = input.substring(input.indexOf(",") + 1);
         String fullJson = "";
@@ -78,17 +91,18 @@ public class FlightCostProcessor {
                 .build();        
                 Response response = client.newCall(request).execute();
                 fullJson = response.body().string();
-                //System.out.println(fullJson);
             } catch (IOException e) {
                 throw new RuntimeException("Invalid Input");
             }
-            //System.out.println(fullJson);
+        String[] iataList = new String[10];
+        int j = 0;
         for (int i = 0; i < fullJson.length() - 4; i++) {
-            if (fullJson.substring(i, i + 4).equals("iata")) {
-                return fullJson.substring(i + 12, i + 15);
-            }
+            if (fullJson.substring(i, i + 4).equals("iata") && j < 10) {
+                iataList[j] = fullJson.substring(i + 12, i + 15);
+                j++;
+            }            
         }
-        return "Invalid Input";
+        return iataList[count];
     }
 
     private String getLonLat(String location) {
