@@ -37,11 +37,11 @@ public class TravelDistanceProcessor {
         }
     }
 
-    public int getDistance(String origin, String destination) {
+    public int getDistance() {
         return Integer.parseInt(jsonString.substring(jsonString.indexOf("distance") + 11, jsonString.indexOf("duration") - 3));
     }
 
-    public int getTime(String origin, String destination) {
+    public int getTime() {
         return Integer.parseInt(jsonString.substring(jsonString.indexOf("duration") + 11, jsonString.indexOf("duration") + 20));
         
     }
