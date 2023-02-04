@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 
-public class FlightCostProcessor implements Processor {
+public class FlightCostProcessor {
     //This class will process the flight cost data from an API.
     //Make a constructor that will take in all the data this class needs to process.
     String jsonString;
@@ -48,6 +48,7 @@ public class FlightCostProcessor implements Processor {
 
     public int getCost(String origin, String destination) {
         return Integer.parseInt(jsonString.substring(jsonString.indexOf("price") + 8, jsonString.indexOf("price") + 12));
+    }
 
     public String getDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
