@@ -3,4 +3,7 @@ Google API: AIzaSyCF53H3HxflG8kBxxLGHBH4sP_pcEwmNqI
 Car Ninja: 4UiF3NQnApBFWB8X29ET3FAvJnM1NHjXNzihJ6K0
     https://api.api-ninjas.com/v1/cars?
         header = X-Api-Key = ...
-
+Flight Price: f984583381msh198a1863bc1426ap1f4886jsn30306581a5fa
+    https://skyscanner50.p.rapidapi.com/api/v1/searchFlights?
+        header = X-RapidAPI-Key = ...
+                X-RapidAPI-Host = skyscanner50.p.rapidapi.com
