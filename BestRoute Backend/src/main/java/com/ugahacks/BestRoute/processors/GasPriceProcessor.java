@@ -17,9 +17,13 @@ public class GasPriceProcessor {
 
     private String fullJson;
 
-    public void process(String originState, String destinationState) {
-        gasPriceOrigin = getJSON(originState);
-        gasPriceDestination = getJSON(destinationState);
+    public void process(String origin, String destination) {
+        gasPriceOrigin = getJSON(getState(origin));
+        gasPriceDestination = getJSON(getState(destination));
+    }
+
+    private String getState(String location) {
+        return location.substring(location.indexOf(",")).trim();
     }
 
     private double getJSON(String location) {

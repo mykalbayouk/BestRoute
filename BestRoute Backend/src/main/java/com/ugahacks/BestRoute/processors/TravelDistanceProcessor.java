@@ -39,13 +39,12 @@ public class TravelDistanceProcessor {
 
     public int getDistance() {
         String output = jsonString.substring(jsonString.indexOf("distance"), jsonString.indexOf("}") + 1);
-        System.out.println(output.substring(output.indexOf("value") + 7, output.indexOf("value") + 12));
         return Integer.parseInt(output.substring(output.indexOf("value") + 9, output.indexOf("}")).trim());
     }
 
     public int getTime() {
-        return Integer.parseInt(jsonString.substring(jsonString.indexOf("duration") + 11, jsonString.indexOf("duration") + 20));
-        
+        String output = jsonString.substring(jsonString.indexOf("duration"), jsonString.indexOf("}") + 1);
+        return Integer.parseInt(output.substring(output.indexOf("value") + 9, output.indexOf("}")).trim());
     }
 
 }
