@@ -28,7 +28,7 @@ public class TravelDistanceProcessor {
             RequestBody body = RequestBody.create(mediaType, "");
             Request request = new Request.Builder()
                 .url(urlC+apiKey)
-                .method("GET", body)
+                .get()
                 .build();
             Response response = client.newCall(request).execute();
             jsonString = response.body().string();
@@ -38,7 +38,9 @@ public class TravelDistanceProcessor {
     }
 
     public int getDistance() {
-        return Integer.parseInt(jsonString.substring(jsonString.indexOf("distance") + 11, jsonString.indexOf("duration") - 3));
+        String output = jsonString.substring(jsonString.indexOf("distance"), jsonString.indexOf("}") + 1);
+        System.out.println(output.substring(output.indexOf("value") + 7, output.indexOf("value") + 12));
+        return Integer.parseInt(output.substring(output.indexOf("value") + 9, output.indexOf("}")).trim());
     }
 
     public int getTime() {
