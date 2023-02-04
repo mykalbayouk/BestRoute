@@ -25,10 +25,10 @@ public class Manager {
     }
 
     protected void process() {
-        flightCostProcessor.process();
-        //milePerGallonProcessor.process();
-        gasPriceProcessor.process();
-        travelDistanceProcessor.process();
+        flightCostProcessor.process(data.getStartingLocation(), data.getEndingLocation(), Integer.parseInt(data.getNumPeople()));
+        milePerGallonProcessor.process(data.getCarMake(), data.getCarModel(), data.getCarYear());
+        gasPriceProcessor.process(data.getStartingLocation(), data.getEndingLocation());
+        travelDistanceProcessor.process(data.getStartingLocation(), data.getEndingLocation());
     }
 
     public ExportableUserData export() {

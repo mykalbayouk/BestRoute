@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 
@@ -19,6 +20,9 @@ public class FlightCostProcessor {
     //Make a constructor that will take in all the data this class needs to process.
     String jsonString;
     HashMap<String, String> iataCodes = new HashMap<String, String>();
+    //HashMap<List<Integer>, String> longLat = new HashMap<List<Integer>, String>();
+    
+
 
     public void process(String origin, String destination, int numPeople) {
         getJSON(getIATA(origin), getIATA(destination), numPeople);
