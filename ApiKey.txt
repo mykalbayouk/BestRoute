@@ -1,9 +1,16 @@
 Google API: AIzaSyCF53H3HxflG8kBxxLGHBH4sP_pcEwmNqI 
     https://maps.googleapis.com/maps/api/distancematrix/json?key = ...
+
 Car Ninja: 4UiF3NQnApBFWB8X29ET3FAvJnM1NHjXNzihJ6K0
     https://api.api-ninjas.com/v1/cars?
         header = X-Api-Key = ...
+
 Flight Price: f984583381msh198a1863bc1426ap1f4886jsn30306581a5fa
     https://skyscanner50.p.rapidapi.com/api/v1/searchFlights?
         header = X-RapidAPI-Key = ...
                 X-RapidAPI-Host = skyscanner50.p.rapidapi.com
+                
+Gas Prices: apikey 6pJ11SI3HigwS2sxVwfqHy:1YctclQtEhNAXMgLzyVO0k
+    --url 'https://api.collectapi.com/gasPrice/stateUsaPrice?state=WA' \
+    --header 'authorization: apikey 6pJ11SI3HigwS2sxVwfqHy:1YctclQtEhNAXMgLzyVO0k' \
+     --header 'content-type: application/json'
