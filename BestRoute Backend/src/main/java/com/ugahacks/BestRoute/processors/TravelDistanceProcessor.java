@@ -8,7 +8,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class TravelDistanceProcessor implements Processor {
+public class TravelDistanceProcessor {
     //This class will process the travel distance data from an API.
     //Make a constructor that will take in all the data this class needs to process.
 
