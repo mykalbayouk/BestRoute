@@ -30,6 +30,7 @@ public class FlightCostProcessor {
     }
 
     private void getJSON(String origin, String destination, int numPeople) {
+        System.out.println("Origin: " + origin + " Destination: " + destination + " NumPeople: " + numPeople);
         String buildURL = "https://skyscanner50.p.rapidapi.com/api/v1/searchFlights?" +
             "origin=" + origin + 
             "&destination=" + destination + 
@@ -71,18 +72,20 @@ public class FlightCostProcessor {
         try {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                .url("https://airlabs.co/api/v9/nearby?" + 
+                .url("https://airlabs.co/api/v9/nearby?" + "lat=" +
                     lat + "&lng=" + lon + "&distance=100&api_key=8b6ca479-8c6c-456d-a986-2193c31a7bb4")
                 .get()
                 .build();        
                 Response response = client.newCall(request).execute();
                 fullJson = response.body().string();
+                //System.out.println(fullJson);
             } catch (IOException e) {
                 throw new RuntimeException("Invalid Input");
             }
+            //System.out.println(fullJson);
         for (int i = 0; i < fullJson.length() - 4; i++) {
             if (fullJson.substring(i, i + 4).equals("iata")) {
-                return fullJson.substring(i + 7, i + 10);
+                return fullJson.substring(i + 12, i + 15);
             }
         }
         return "Invalid Input";
