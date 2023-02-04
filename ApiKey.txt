@@ -14,3 +14,7 @@ Gas Prices: apikey 6pJ11SI3HigwS2sxVwfqHy:1YctclQtEhNAXMgLzyVO0k
     --url 'https://api.collectapi.com/gasPrice/stateUsaPrice?state=WA' \
     --header 'authorization: apikey 6pJ11SI3HigwS2sxVwfqHy:1YctclQtEhNAXMgLzyVO0k' \
      --header 'content-type: application/json'
+
+Google GEOLOCATION: AIzaSyDp5yFSXXwLEz5qpC00CnzTqxGuzsv8_Qc
+    https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDp5yFSXXwLEz5qpC00CnzTqxGuzsv8_Qc
+    
