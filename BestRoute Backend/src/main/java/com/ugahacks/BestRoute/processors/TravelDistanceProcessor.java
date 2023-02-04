@@ -47,4 +47,5 @@ public class TravelDistanceProcessor {
         return Integer.parseInt(output.substring(output.indexOf("value") + 9, output.indexOf("}")).trim());
     }
 
+
 }

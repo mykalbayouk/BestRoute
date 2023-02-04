@@ -3,6 +3,7 @@ package com.ugahacks.BestRoute.processors;
 
 import java.io.IOException;
 
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -17,14 +18,16 @@ import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 public class FlightCostProcessor {
     //This class will process the flight cost data from an API.
     //Make a constructor that will take in all the data this class needs to process.
-    String jsonString;
-    HashMap<String, String> iataCodes = new HashMap<String, String>();
-    //HashMap<List<Integer>, String> longLat = new HashMap<List<Integer>, String>();
+    private String jsonString;
+    private HashMap<String, String> iataCodes = new HashMap<String, String>();
+    private double lon;
+    private double lat;
     
 
 
     public void process(String origin, String destination, int numPeople) {
         getJSON(getIATA(origin), getIATA(destination), numPeople);
+        setLonLat(destination);
     }
 
     private void getJSON(String origin, String destination, int numPeople) {
@@ -85,4 +88,25 @@ public class FlightCostProcessor {
         return iataCodes.get(input.substring(0, input.indexOf(","))).trim();
     }
 
+    private void setLonLat(String location) {
+        String geoJSON = "";
+        try {
+            String urlC = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location;
+            String apiKey = "&key=AIzaSyCF53H3HxflG8kBxxLGHBH4sP_pcEwmNqI";
+            OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+            Request request = new Request.Builder()
+                .url(urlC + apiKey)
+                .get()
+                .build();
+            Response response = client.newCall(request).execute();
+            geoJSON = response.body().string();
+        } catch (IOException e) {
+            System.out.println("Invalid Input");     
+        }
+        String temp = geoJSON.substring(geoJSON.indexOf("location"));
+        String output = geoJSON.substring(geoJSON.indexOf("location"), temp.indexOf("}"));
+        lon = Double.parseDouble(output.substring(16, output.indexOf(",")));
+        lat = Double.parseDouble(output.substring(output.indexOf("lat") + 5));
+    }
 }
