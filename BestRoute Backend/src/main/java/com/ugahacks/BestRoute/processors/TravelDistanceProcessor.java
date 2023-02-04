@@ -18,7 +18,7 @@ public class TravelDistanceProcessor {
         getJSON(origin, destination);
     }
 
-    public void getJSON(String origin, String destination) {
+    private void getJSON(String origin, String destination) {
         try {
             String urlC = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + destination;
             String apiKey = "&key=AIzaSyCF53H3HxflG8kBxxLGHBH4sP_pcEwmNqI";

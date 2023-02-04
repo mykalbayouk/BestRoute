@@ -28,7 +28,7 @@ public class FlightCostProcessor {
         getJSON(getIATA(origin), getIATA(destination), numPeople);
     }
 
-    public void getJSON(String origin, String destination, int numPeople) {
+    private void getJSON(String origin, String destination, int numPeople) {
         String buildURL = "https://skyscanner50.p.rapidapi.com/api/v1/searchFlights?" +
             "origin=" + origin + 
             "&destination=" + destination + 
@@ -57,13 +57,13 @@ public class FlightCostProcessor {
         return Double.parseDouble(output.substring(17));
     }
 
-    public String getDate() {
+    private String getDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.now();
         return dtf.format(localDate);
     }
 
-    public String getIATA(String input) {
+    private String getIATA(String input) {
         String fullJson = "";
         try {
             OkHttpClient client = new OkHttpClient();

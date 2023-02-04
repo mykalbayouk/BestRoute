@@ -16,10 +16,10 @@ public class MilePerGallonProcessor {
 
 
     public void process(String make, String model, String year) {
-        getAPI(make, model, year);
+        getJSON(make, model, year);
     }
 
-    public void getAPI(String make, String model, String year) {
+    private void getJSON(String make, String model, String year) {
         try { 
             String url_create = "https://api.api-ninjas.com/v1/cars?make="+ make + "&model=" + model + "&year=" + year;
             URL url = new URL(url_create);
