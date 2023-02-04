@@ -19,15 +19,14 @@ public class FlightCostProcessor {
     //This class will process the flight cost data from an API.
     //Make a constructor that will take in all the data this class needs to process.
     private String jsonString;
-    private HashMap<String, String> iataCodes = new HashMap<String, String>();
     private double lon;
     private double lat;
     
 
 
     public void process(String origin, String destination, int numPeople) {
-        getJSON(getIATA(origin), getIATA(destination), numPeople);
-        setLonLat(destination);
+        getJSON(getIATA(getLonLat(origin)), getIATA(getLonLat(destination)), numPeople);
+        
     }
 
     private void getJSON(String origin, String destination, int numPeople) {
@@ -48,7 +47,7 @@ public class FlightCostProcessor {
             Response response = client.newCall(request).execute();
             jsonString = response.body().string();
         } catch (IOException e) {
-            System.out.println("Invalid Input");
+            throw new RuntimeException("Invalid Input");
         }
     }
 
@@ -66,29 +65,30 @@ public class FlightCostProcessor {
     }
 
     private String getIATA(String input) {
+        String lon = input.substring(0, input.indexOf(","));
+        String lat = input.substring(input.indexOf(",") + 1);
         String fullJson = "";
         try {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                .url("https://airlabs.co/api/v9/cities?country_code=US&api_key=8b6ca479-8c6c-456d-a986-2193c31a7bb4")
+                .url("https://airlabs.co/api/v9/nearby?" + 
+                    lat + "&lng=" + lon + "&distance=100&api_key=8b6ca479-8c6c-456d-a986-2193c31a7bb4")
                 .get()
                 .build();        
                 Response response = client.newCall(request).execute();
                 fullJson = response.body().string();
             } catch (IOException e) {
-                System.out.println("Invalid Input");
+                throw new RuntimeException("Invalid Input");
             }
         for (int i = 0; i < fullJson.length() - 4; i++) {
-            if (fullJson.substring(i, i + 4).equals("name")) {
-                String name = fullJson.substring(i + 7, fullJson.indexOf("\"", i + 8));
-                String code = fullJson.substring(fullJson.indexOf("code", i) + 7, fullJson.indexOf("\"", fullJson.indexOf("code", i) + 7));
-                iataCodes.put(name, code);
+            if (fullJson.substring(i, i + 4).equals("iata")) {
+                return fullJson.substring(i + 7, i + 10);
             }
         }
-        return iataCodes.get(input.substring(0, input.indexOf(","))).trim();
+        return "Invalid Input";
     }
 
-    private void setLonLat(String location) {
+    private String getLonLat(String location) {
         String geoJSON = "";
         try {
             String urlC = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location;
@@ -102,20 +102,14 @@ public class FlightCostProcessor {
             Response response = client.newCall(request).execute();
             geoJSON = response.body().string();
         } catch (IOException e) {
-            System.out.println("Invalid Input");     
+            throw new RuntimeException("Invalid Input");     
         }
-        //System.out.println(geoJSON);
         String temp = geoJSON.substring(geoJSON.indexOf("location"));
         String output = temp.substring(0, temp.indexOf("}"));
-        lon = Double.parseDouble(output.substring(output.indexOf("lng") + 7, output.indexOf("lng") + 14));
-        lat = Double.parseDouble(output.substring(output.indexOf("lat") + 7, output.indexOf("lat") + 14));
+        String lon = (output.substring(output.indexOf("lng") + 7, output.indexOf("lng") + 14));
+        String lat = (output.substring(output.indexOf("lat") + 7, output.indexOf("lat") + 14));
+        return lon + "," + lat;
     }
 
-    public double getLon() {
-        return lon;
-    }
 
-    public double getLat() {
-        return lat;
-    }
 }
