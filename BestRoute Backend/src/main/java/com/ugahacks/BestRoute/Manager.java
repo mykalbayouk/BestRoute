@@ -26,7 +26,7 @@ public class Manager {
 
     protected void process() {
         flightCostProcessor.process();
-        milePerGallonProcessor.process();
+        //milePerGallonProcessor.process();
         gasPriceProcessor.process();
         travelDistanceProcessor.process();
     }

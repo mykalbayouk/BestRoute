@@ -8,7 +8,7 @@ import java.net.URL;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class MilePerGallonProcessor implements Processor {
+public class MilePerGallonProcessor {
     //This class will process the mile per gallon data from an API.
     //Make a constructor that will take in all the data this class needs to process.
     private String api_MPG;
@@ -34,6 +34,7 @@ public class MilePerGallonProcessor implements Processor {
             e.printStackTrace(); 
         } // try catch
     } // getAPI
+    
     public int getMPG() {
         return Integer.parseInt(api_MPG);
     }

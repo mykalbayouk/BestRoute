@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ugahacks.BestRoute.data.ExportableUserData;
@@ -21,8 +22,13 @@ public class ApiController {
 
     //Will receive data from the frontend
     @PostMapping("/send")
-    public String receive(@RequestParam ImportedUserData data) {
-        System.out.println(data.getCarMake());
-        return "Received";
+    public @ResponseBody ExportableUserData receive(ImportedUserData data) {
+        try {
+            Manager manager = new Manager(data);
+            manager.process();
+            return manager.export();
+        } catch (Exception e) {
+            return new ExportableUserData();
+        }
     }
 }
