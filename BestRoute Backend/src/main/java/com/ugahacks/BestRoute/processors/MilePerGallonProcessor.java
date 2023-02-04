@@ -16,12 +16,13 @@ public class MilePerGallonProcessor implements Processor {
 
 
     public void process(String make, String model, String year) {
-        getAPI(make, model. year);
+        getAPI(make, model, year);
     }
 
     public void getAPI(String make, String model, String year) {
         try { 
-            URL url = new URL("https://api.api-ninjas.com/v1/cars?model=camry");
+            String url_create = "https://api.api-ninjas.com/v1/cars?make="+ make + "&model=" + model + "&year=" + year;
+            URL url = new URL(url_create);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("accept", "application/json");
             connection.addRequestProperty("X-Api-Key", "4UiF3NQnApBFWB8X29ET3FAvJnM1NHjXNzihJ6K0");
@@ -32,6 +33,9 @@ public class MilePerGallonProcessor implements Processor {
         } catch (IOException e) {
             e.printStackTrace(); 
         } // try catch
-        
+    } // getAPI
+    public int getMPG() {
+        return Integer.parseInt(api_MPG);
     }
+
 }

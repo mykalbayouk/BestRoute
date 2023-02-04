@@ -24,8 +24,6 @@ public class Manager {
         travelDistanceProcessor = new TravelDistanceProcessor();
     }
 
-
-
     protected void process() {
         flightCostProcessor.process();
         milePerGallonProcessor.process();
