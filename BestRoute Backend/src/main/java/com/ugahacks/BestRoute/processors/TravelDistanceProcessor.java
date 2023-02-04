@@ -25,7 +25,6 @@ public class TravelDistanceProcessor {
             OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
             MediaType mediaType = MediaType.parse("text/plain");
-            RequestBody body = RequestBody.create(mediaType, "");
             Request request = new Request.Builder()
                 .url(urlC+apiKey)
                 .get()
@@ -43,7 +42,8 @@ public class TravelDistanceProcessor {
     }
 
     public int getTime() {
-        String output = jsonString.substring(jsonString.indexOf("duration"), jsonString.indexOf("}") + 1);
+        String temp = jsonString.substring(jsonString.indexOf("duration"));
+        String output = temp.substring(0, temp.indexOf("}") + 1);
         return Integer.parseInt(output.substring(output.indexOf("value") + 9, output.indexOf("}")).trim());
     }
 

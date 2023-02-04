@@ -7,11 +7,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 
@@ -52,15 +51,15 @@ public class FlightCostProcessor {
 
     public double getCost() {
         String temp = jsonString.substring(jsonString.indexOf("price"));
-        String output = jsonString.substring(jsonString.indexOf("price"), temp.indexOf("}") + 1);
-        System.out.println(output);
+        String output = jsonString.substring(jsonString.indexOf("price"), temp.indexOf("}"));
         return Double.parseDouble(output.substring(17));
     }
 
     public String getDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.now();
-        return dtf.format(localDate);
+        LocalDateTime now = LocalDateTime.now();
+        now = now.plus(7, ChronoUnit.DAYS);
+        return dtf.format(now);
     }
 
     public String getIATA(String input) {

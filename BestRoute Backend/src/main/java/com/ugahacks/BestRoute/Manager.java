@@ -10,7 +10,6 @@ import com.ugahacks.BestRoute.processors.TravelDistanceProcessor;
 public class Manager {
 
     private final ImportedUserData data;
-    private ExportableUserData exportableUserData;
     private final FlightCostProcessor flightCostProcessor;
     private final MilePerGallonProcessor milePerGallonProcessor;
     private final GasPriceProcessor gasPriceProcessor;
@@ -32,19 +31,20 @@ public class Manager {
     }
 
     public ExportableUserData export() {
-        return exportableUserData;
+        return new ExportableUserData(calcDriveCost(), calcDriveTime(), calcFlightCost(), calcFlightTime());
     }
 
     public String calcDriveCost() {
-        int miles = travelDistanceProcessor.getDistance();
+        double miles = travelDistanceProcessor.getDistance() / 1609.344;
         int mpg = milePerGallonProcessor.getMPG();
         double ppg = gasPriceProcessor.getPPG();
-        double cost = (miles * ppg) / mpg;
+        System.out.println("Miles: " + miles + " MPG: " + mpg + " PPG: " + ppg);
+        double cost = (miles / mpg) * ppg;
         return String.valueOf(cost);
     }
 
     public String calcDriveTime() {
-        int time = travelDistanceProcessor.getTime();
+        double time = travelDistanceProcessor.getTime() / 3600.0;
         return String.valueOf(time);
     }
 
@@ -54,6 +54,6 @@ public class Manager {
     }
 
     public String calcFlightTime() {
-        return "" + travelDistanceProcessor.getDistance() / 550.0;
+        return "" + travelDistanceProcessor.getDistance() / 850000.0;
     }
 }
