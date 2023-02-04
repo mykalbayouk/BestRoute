@@ -1,0 +1,84 @@
+body {
+  text-align: center;
+  background-color: #e0fbfc;
+}
+
+#navbar {
+  background-color: #98c1d9;
+}
+
+/* Styling for the navigation bar itself */
+#navelements {
+  display: flex;
+  font-size: 20px;
+  justify-content: flex-end;
+  list-style: none; /* Removes the bullets from the "list" */
+}
+
+/* Styling for each navigation bar element */
+.navelement {
+  font-weight: bold;
+  padding: 1%;
+  padding: 1.5em 0 1.5em 0;
+  transition: 0.3s;
+}
+
+#navbarheader {
+  float: left;
+}
+
+#navbarheader a {
+  padding: 1.55em;
+}
+
+#navbarheader a:link {
+  color: black;
+  text-decoration: none; 
+}
+
+
+#navbarheader a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+#navbarheader a:active {
+  color: black;
+  text-decoration: none;
+}
+
+li a:link {
+  color: black;
+  text-decoration: none; 
+}
+
+
+li a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+
+li a:hover {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+
+li a:active {
+  color: black;
+  text-decoration: none;
+}
+
+li a {
+  padding: 1.55em;
+}
+
+li:hover {
+  background-color: #293241;
+  opacity: 100%;
+  transition: 0.3s;
+}
+
+

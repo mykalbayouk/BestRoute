@@ -1,0 +1,34 @@
+.homepageheader {
+    font-family: 'Roboto', sans-serif;
+}
+
+#homepagebodytext {
+    font-size: 1.5em;
+    color: #000000;
+    text-align: center;
+    margin: 0 auto;
+    width: 80%;
+    padding: 0 0 0 0;
+}
+
+.homepagebutton {
+    font-size: 1.5em;
+    padding: 1em 1em 1em 1em;
+    border-radius: 0.5em;
+    border: 0;
+    margin: 0 auto;
+    width: 20%;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s;
+    background-color: #98c1d9;
+}
+
+.homepagebutton a {
+    text-decoration: none;
+}
+
+.homepagebutton a:hover {
+    color: #000000;
+    text-decoration: none;
+}
