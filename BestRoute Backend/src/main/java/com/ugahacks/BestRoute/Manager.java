@@ -26,22 +26,22 @@ public class Manager {
 
     protected void process() {
         flightCostProcessor.process(data.getStartingLocation(), data.getEndingLocation(), Integer.parseInt(data.getNumPeople()));
-        milePerGallonProcessor.process(data.getCarMake(), data.getCarModel(), data.getCarYear());
         gasPriceProcessor.process(data.getStartingLocation(), data.getEndingLocation());
         travelDistanceProcessor.process(data.getStartingLocation(), data.getEndingLocation());
+        milePerGallonProcessor.process(data.getCarMake(), data.getCarModel(), data.getCarYear());
     }
 
     public ExportableUserData export() {
         return exportableUserData;
     }
 
-    public String calcDriveCost() {
+    /*public String calcDriveCost() {
         int miles = travelDistanceProcessor.getDistance();
         int mpg = milePerGallonProcessor.getMPG();
         int ppg = gasPriceProcessor.getPPG();
         int cost = (miles * ppg) / mpg;
         return String.valueOf(cost);
-    }
+    }*/
 
     public String calcDriveTime() {
         int time = travelDistanceProcessor.getTime();
@@ -49,11 +49,11 @@ public class Manager {
     }
 
     public String calcFlightCost() {
-        int cost = flightCostProcessor.getCost();
+        double cost = flightCostProcessor.getCost();
         return String.valueOf(cost);
     }
 
     public String calcFlightTime() {
-
+        return "";
     }
 }

@@ -22,12 +22,8 @@ public class ApiController {
     //Will receive data from the frontend
     @PostMapping("/send")
     public @ResponseBody ExportableUserData receive(ImportedUserData data) {
-        try {
-            Manager manager = new Manager(data);
+        Manager manager = new Manager(data);
             manager.process();
             return manager.export();
-        } catch (Exception e) {
-            return new ExportableUserData();
-        }
     }
 }

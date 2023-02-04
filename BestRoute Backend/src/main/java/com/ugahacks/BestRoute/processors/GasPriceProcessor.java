@@ -40,10 +40,10 @@ public class GasPriceProcessor {
         } catch (IOException e) {
             System.out.println("Invalid Input");
         }
-        return Double.parseDouble(fullJson.substring(fullJson.indexOf("gasoline") + 8, fullJson.indexOf("gasoline") + 12));   
+        return Double.parseDouble(fullJson.substring(fullJson.indexOf("gasoline") + 11, fullJson.indexOf("gasoline") + 16));   
     }
 
-    public double getGasPrice() {
+    public double getPPG() {
         return (gasPriceOrigin + gasPriceDestination) / 2;
     }
 }

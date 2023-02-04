@@ -50,12 +50,15 @@ public class FlightCostProcessor {
         }
     }
 
-    public int getCost() {
-        return Integer.parseInt(jsonString.substring(jsonString.indexOf("price") + 8, jsonString.indexOf("price") + 12));
+    public double getCost() {
+        String temp = jsonString.substring(jsonString.indexOf("price"));
+        String output = jsonString.substring(jsonString.indexOf("price"), temp.indexOf("}") + 1);
+        System.out.println(output);
+        return Double.parseDouble(output.substring(17));
     }
 
     public String getDate() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.now();
         return dtf.format(localDate);
     }
@@ -65,7 +68,7 @@ public class FlightCostProcessor {
         try {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                .url("https://airlabs.co/api/v9/countries?code=US&api_key=8b6ca479-8c6c-456d-a986-2193c31a7bb4")
+                .url("https://airlabs.co/api/v9/cities?country_code=US&api_key=8b6ca479-8c6c-456d-a986-2193c31a7bb4")
                 .get()
                 .build();        
                 Response response = client.newCall(request).execute();
@@ -73,14 +76,14 @@ public class FlightCostProcessor {
             } catch (IOException e) {
                 System.out.println("Invalid Input");
             }
-        for (int i = 0; i < fullJson.length(); i++) {
+        for (int i = 0; i < fullJson.length() - 4; i++) {
             if (fullJson.substring(i, i + 4).equals("name")) {
-                String name = fullJson.substring(i + 8, fullJson.indexOf("\"", i + 8));
+                String name = fullJson.substring(i + 7, fullJson.indexOf("\"", i + 8));
                 String code = fullJson.substring(fullJson.indexOf("code", i) + 7, fullJson.indexOf("\"", fullJson.indexOf("code", i) + 7));
                 iataCodes.put(name, code);
             }
         }
-        return iataCodes.get(input);
+        return iataCodes.get(input.substring(0, input.indexOf(","))).trim();
     }
 
 }
