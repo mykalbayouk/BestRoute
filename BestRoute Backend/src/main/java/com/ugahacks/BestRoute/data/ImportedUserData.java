@@ -10,13 +10,15 @@ public class ImportedUserData {
     private String carMake;
     private String carModel;
     private String carYear;
+    private String numPeople;
 
-    public ImportedUserData(String startingLocation, String endingLocation, String carMake, String carModel, String carYear) {
+    public ImportedUserData(String startingLocation, String endingLocation, String carMake, String carModel, String carYear, String numPeople) {
         this.startingLocation = startingLocation;
         this.endingLocation = endingLocation;
         this.carMake = carMake;
         this.carModel = carModel;
         this.carYear = carYear;
+        this.numPeople = numPeople;
     }
 
     public String getStartingLocation() {
@@ -37,5 +39,9 @@ public class ImportedUserData {
 
     public String getCarYear() {
         return carYear;
+    }
+
+    public String getNumPeople() {
+        return numPeople;
     }
 }
