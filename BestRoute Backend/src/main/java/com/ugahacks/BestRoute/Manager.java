@@ -35,4 +35,25 @@ public class Manager {
         return exportableUserData;
     }
 
+    public String calcDriveCost() {
+        int miles = travelDistanceProcessor.getDistance();
+        int mpg = milePerGallonProcessor.getMPG();
+        int ppg = gasPriceProcessor.getPPG();
+        int cost = (miles * ppg) / mpg;
+        return String.valueOf(cost);
+    }
+
+    public String calcDriveTime() {
+        int time = travelDistanceProcessor.getTime();
+        return String.valueOf(time);
+    }
+
+    public String calcFlightCost() {
+        int cost = flightCostProcessor.getCost();
+        return String.valueOf(cost);
+    }
+
+    public String calcFlightTime() {
+
+    }
 }
