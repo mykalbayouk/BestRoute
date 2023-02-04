@@ -25,6 +25,7 @@ public class Manager {
 
     protected void process() {
         flightCostProcessor.process(data.getStartingLocation(), data.getEndingLocation(), Integer.parseInt(data.getNumPeople()));
+        System.out.println(flightCostProcessor.getLat() + " " + flightCostProcessor.getLon());
         gasPriceProcessor.process(data.getStartingLocation(), data.getEndingLocation());
         travelDistanceProcessor.process(data.getStartingLocation(), data.getEndingLocation());
         milePerGallonProcessor.process(data.getCarMake(), data.getCarModel(), data.getCarYear());

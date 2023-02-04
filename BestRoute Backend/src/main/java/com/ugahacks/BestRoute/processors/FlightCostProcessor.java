@@ -92,7 +92,7 @@ public class FlightCostProcessor {
         String geoJSON = "";
         try {
             String urlC = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location;
-            String apiKey = "&key=AIzaSyCF53H3HxflG8kBxxLGHBH4sP_pcEwmNqI";
+            String apiKey = "&key=AIzaSyDp5yFSXXwLEz5qpC00CnzTqxGuzsv8_Qc";
             OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
             Request request = new Request.Builder()
@@ -104,9 +104,18 @@ public class FlightCostProcessor {
         } catch (IOException e) {
             System.out.println("Invalid Input");     
         }
+        //System.out.println(geoJSON);
         String temp = geoJSON.substring(geoJSON.indexOf("location"));
-        String output = geoJSON.substring(geoJSON.indexOf("location"), temp.indexOf("}"));
-        lon = Double.parseDouble(output.substring(16, output.indexOf(",")));
-        lat = Double.parseDouble(output.substring(output.indexOf("lat") + 5));
+        String output = temp.substring(0, temp.indexOf("}"));
+        lon = Double.parseDouble(output.substring(output.indexOf("lng") + 7, output.indexOf("lng") + 14));
+        lat = Double.parseDouble(output.substring(output.indexOf("lat") + 7, output.indexOf("lat") + 14));
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public double getLat() {
+        return lat;
     }
 }
