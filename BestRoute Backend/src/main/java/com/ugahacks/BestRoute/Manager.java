@@ -44,7 +44,4 @@ public class Manager {
         return exportableUserData;
     }
 
-
-
-
 }
