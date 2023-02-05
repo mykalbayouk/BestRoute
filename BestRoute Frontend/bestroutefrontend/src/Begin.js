@@ -66,11 +66,11 @@ function Begin() {
                     <h3 className = "homepageheader">Cost of Driving:</h3>
                     <p>${parseFloat(carCost).toFixed(1)}</p>
                     <h3 className = "homepageheader">Time of Driving:</h3>
-                    <p>{parseFloat(carTime).toFixed(2)}</p>
+                    <p>{parseFloat(carTime).toFixed(2)} hours</p>
                     <h3 className = "homepageheader">Cost of Flying:</h3>
                     <p>${parseFloat(flightCost).toFixed(1)}</p>
                     <h3 className = "homepageheader">Time of Flying:</h3>
-                    <p>{parseFloat(flightTime).toFixed(2)}</p>
+                    <p>{parseFloat(flightTime).toFixed(2)} hours</p>
                 </div>
                 <p className = "resultstexter">{fasterText} {cheaperText}</p>
             </div>

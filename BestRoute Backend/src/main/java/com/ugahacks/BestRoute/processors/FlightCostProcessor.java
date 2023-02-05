@@ -9,10 +9,7 @@ import okhttp3.Response;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
-
-import org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator;
 
 public class FlightCostProcessor {
     //This class will process the flight cost data from an API.
@@ -58,7 +55,7 @@ public class FlightCostProcessor {
     private String getDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
-        now = now.plus(7, ChronoUnit.DAYS);
+        now = now.plusDays(7);
         return dtf.format(now);
     }
 

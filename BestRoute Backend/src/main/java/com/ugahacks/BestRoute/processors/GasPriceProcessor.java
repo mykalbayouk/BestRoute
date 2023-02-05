@@ -32,7 +32,7 @@ public class GasPriceProcessor {
             Request request = new Request.Builder()
                 .url("https://api.collectapi.com/gasPrice/stateUsaPrice?state=" + location)
                 .addHeader("content-type", "application/json")
-                .addHeader("authorization", "apikey 6pJ11SI3HigwS2sxVwfqHy:1YctclQtEhNAXMgLzyVO0k")
+                .addHeader("authorization", "apikey 4cz7SRjMnLC8ZZyHjiPfLb:56hZPkRFedWFD0TcTPjtNs")
                 .get()
                 .build();        
             Response response = client.newCall(request).execute();
